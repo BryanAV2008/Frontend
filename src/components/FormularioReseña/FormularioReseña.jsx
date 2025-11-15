@@ -20,47 +20,36 @@ function FormularioReseña() {
   const [gameLoading, setGameLoading] = useState(false);
 
   useEffect(() => {
-    const fetchInitialData = async () => {
-      setLoading(true);
-      setError(null);
+  const fetchInitialData = async () => {
+    setLoading(true);
+    setError(null);
 
-      try {
-        if (id) {
-          // Modo edición: cargar datos de la reseña existente
-          const reviewData = await getReviewById(id);
-          // Asegurarse de que el formato coincida con el estado del frontend
-          setReview({
-            game: reviewData.game,
-            gameTitle: '', // Se llenará a continuación
-            author: reviewData.author || '', // Si el backend no tiene 'author', usa string vacío
-            rating: reviewData.rating,
-            content: reviewData.comment, // El backend usa 'comment', el frontend 'content'
-          });
+    try {
+      if (id) {
+        // ... (modo edición existente) ...
+      } else if (gameId) {
+        // Modo creación para un juego específico: cargar título del juego
+        console.log("Modo creación. Intentando cargar juego con ID:", gameId); // <-- AÑADE ESTO
+        setGameLoading(true);
+        const gameData = await getGameById(gameId); // <--- ESTA LÍNEA
+        console.log("Resultado de getGameById:", gameData); // <-- AÑADE ESTO
 
-          // Si la reseña tiene un game ID, cargar el título del juego
-          if (reviewData.game) {
-              setGameLoading(true);
-              const gameData = await getGameById(reviewData.game);
-              setReview(prev => ({ ...prev, gameTitle: gameData.title }));
-              setGameLoading(false);
-          }
-        } else if (gameId) {
-          // Modo creación para un juego específico: cargar título del juego
-          setGameLoading(true);
-          const gameData = await getGameById(gameId);
-          setReview(prev => ({ ...prev, game: gameId, gameTitle: gameData.title }));
-          setGameLoading(false);
+        if (!gameData) { // <-- AÑADE ESTA COMPROBACIÓN
+          throw new Error("El juego especificado no fue encontrado.");
         }
-      } catch (err) {
-        console.error("Error al cargar datos iniciales de la reseña:", err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchInitialData();
-  }, [id, gameId]);
 
+        setReview(prev => ({ ...prev, game: gameId, gameTitle: gameData.title }));
+        setGameLoading(false);
+      }
+    } catch (err) {
+      console.error("Error al cargar datos iniciales de la reseña o juego:", err); // <-- Modifica el mensaje
+      setError(new Error(`Error: ${err.message}. Asegúrate de que el juego existe.`)); // <-- Mensaje más claro
+    } finally {
+      setLoading(false);
+    }
+  };
+  fetchInitialData();
+}, [id, gameId]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setReview(prevReview => ({
