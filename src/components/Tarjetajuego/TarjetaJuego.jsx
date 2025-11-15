@@ -1,9 +1,8 @@
-// src/components/TarjetaJuego/TarjetaJuego.jsx
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed } from '../../api'; // Importamos API
+import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed } from '../../api'; 
 import './TarjetaJuego.css';
-import placeholderImage from '../../assets/images/placeholder.png'; // Importa tu imagen de placeholder
+import placeholderImage from '../../assets/images/placeholder.png'; 
 
 function StarRating({ rating, onRatingChange, readOnly = false }) {
   const [hoverRating, setHoverRating] = useState(0);
@@ -26,12 +25,12 @@ function StarRating({ rating, onRatingChange, readOnly = false }) {
 }
 
 function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = false }) {
-  const { id } = useParams(); // Obtiene el ID de la URL si es una página de detalle
+  const { id } = useParams(); 
   const [game, setGame] = useState(initialGame);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+// useEffect para cargar los detalles del juego si estamos en la página de detalle
   useEffect(() => {
     if (isDetailPage && id) {
       const fetchGameDetails = async () => {
@@ -47,10 +46,10 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       };
       fetchGameDetails();
     } else {
-      setGame(initialGame); // Si no es página de detalle, usa el game pasado por prop
+      setGame(initialGame); 
     }
   }, [id, isDetailPage, initialGame]);
-
+// Maneja el cambio del estado de completado
   const handleToggleCompleted = async () => {
     if (!game) return;
     try {
@@ -65,7 +64,7 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       setLoading(false);
     }
   };
-
+// Maneja el cambio de la calificación
   const handleRatingChange = async (newRating) => {
     if (!game || newRating === game.rating) return;
     try {
@@ -80,12 +79,12 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       setLoading(false);
     }
   };
-
+// Maneja el cambio de las horas jugadas
   const handleHoursPlayedChange = async (e) => {
     if (!game) return;
     const newHours = parseInt(e.target.value, 10);
     if (isNaN(newHours) || newHours < 0 || newHours === game.hoursPlayed) return;
-
+// Actualizar horas jugadas
     try {
       setLoading(true);
       const updatedGame = await updateGameHoursPlayed(game._id, newHours);

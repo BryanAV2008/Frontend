@@ -1,4 +1,4 @@
-/* src/index.css */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -26,7 +26,7 @@ body {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0; /* Quitamos el padding por defecto para que App.css lo maneje */
+  padding: 0; 
   text-align: center;
   width: 100%; /* Asegura que la raíz ocupe todo el ancho disponible */
 }

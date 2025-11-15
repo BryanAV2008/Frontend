@@ -1,14 +1,12 @@
 import React from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom'; // Estos imports están bien
-
-// Importar componentes de las carpetas correspondientes
+import { Routes, Route, NavLink } from 'react-router-dom'; 
 import BibliotecaJuegos from './components/BibliotecaJuegos/BibliotecaJuegos.jsx';
 import TarjetaJuego from './components/Tarjetajuego/Tarjetajuego.jsx';
 import FormularioJuego from './components/FormularioJuego/FormularioJuego.jsx';
 import ListaReseñas from './components/ListaReseñas/ListaReseñas.jsx';
 import FormularioReseña from './components/FormularioReseña/FormularioReseña.jsx';
 import EstadisticasPersonales from './components/EstadisticasPersonales/EstadisticasPersonales.jsx';
-
+// Componente principal de la aplicación
 function App() {
   return (
     <div className="app-container">
@@ -16,7 +14,6 @@ function App() {
         <h1>GameTracker</h1>
         <nav>
           <ul>
-            {/* Asegúrate de que NavLink tenga la prop 'to' y 'className' */}
             <li><NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Mi Biblioteca</NavLink></li>
             <li><NavLink to="/add-game" className={({ isActive }) => isActive ? "active" : ""}>Añadir Juego</NavLink></li>
             <li><NavLink to="/reviews" className={({ isActive }) => isActive ? "active" : ""}>Reseñas</NavLink></li>
@@ -26,7 +23,6 @@ function App() {
       </header>
 
       <main className="app-main">
-        {/* Las Routes y Route deben estar aquí */}
         <Routes>
           <Route path="/" element={<BibliotecaJuegos />} />
           <Route path="/game/:id" element={<TarjetaJuego isDetailPage={true} />} />

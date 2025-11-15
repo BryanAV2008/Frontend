@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getGameById } from '../../api'; // Para obtener el título del juego
-import { getReviewById, createReview, updateReview } from '../../api'; // Para CRUD de reseñas
+import { getReviewById, createReview, updateReview } from '../../api'; 
 import './FormularioReseña.css';
-import { default as StarRating } from '../TarjetaJuego/TarjetaJuego.jsx'; // Importamos StarRating
-
+import { default as StarRating } from '../Tarjetajuego/Tarjetajuego.jsx'; 
+// Componente para el formulario de añadir/editar reseñas
 function FormularioReseña() {
   const { id, gameId } = useParams(); // 'id' para editar reseña, 'gameId' para crear en un juego específico
   const navigate = useNavigate();
   const [review, setReview] = useState({
-    game: gameId || '', // ID del juego asociado
-    gameTitle: '',      // Se llenará si se conoce el juego (solo para frontend)
-    author: '',         // Tu nombre (opcional)
+    game: gameId || '', 
+    gameTitle: '',      
+    author: '',         
     rating: 0,
-    content: '',        // Contenido de la reseña
+    content: '',        
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [gameLoading, setGameLoading] = useState(false);
-
+// useEffect para cargar los datos de la reseña o del juego al montar el componente
   useEffect(() => {
   const fetchInitialData = async () => {
     setLoading(true);
     setError(null);
-
+// Si estamos editando una reseña, cargar sus datos
     try {
       if (id) {
        
@@ -56,14 +56,14 @@ function FormularioReseña() {
       [name]: value
     }));
   };
-
+// Maneja el cambio de la calificación
   const handleRatingChange = (newRating) => {
     setReview(prevReview => ({
       ...prevReview,
       rating: newRating
     }));
   };
-
+// Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -76,7 +76,7 @@ function FormularioReseña() {
         return;
     }
 
-    // *** CAMBIO CRÍTICO: Construye el objeto de datos para enviar al backend ***
+    // Construye el objeto de datos para enviar al backend
     const dataToSend = {
       game: review.game,
       rating: review.rating,
@@ -87,8 +87,7 @@ function FormularioReseña() {
     if (review.author) {
       dataToSend.author = review.author;
     }
-    // *** FIN DEL CAMBIO ***
-
+// Llama a la API para crear o actualizar la reseña
     try {
       if (id) {
         await updateReview(id, dataToSend); // Usamos 'dataToSend'
@@ -108,14 +107,14 @@ function FormularioReseña() {
       setLoading(false);
     }
   };
-
+// Mostrar el mensaje de carga si estamos obteniendo datos
   if (loading && (id || gameId) && (!review.gameTitle && !review.content && !error)) {
     return <div className="loading-message">Cargando reseña/juego...</div>;
   }
   // Mostrar el mensaje de error si existe
   if (error) return <div className="error-message">Error: {error.message}</div>;
 
-
+// Renderizado del formulario
   return (
     <div className="formulario-review-container">
       <h2>{id ? 'Editar Reseña' : `Escribir Reseña para ${gameLoading ? 'Cargando...' : (review.gameTitle || 'un Juego')}`}</h2>

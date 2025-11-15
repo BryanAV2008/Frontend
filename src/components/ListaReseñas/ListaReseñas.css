@@ -1,4 +1,3 @@
-/* src/components/ListaReseñas/ListaReseñas.css */
 .lista-reviews-container {
   padding: 20px;
   max-width: 900px;
@@ -14,7 +13,7 @@
 
 .reviews-list {
   display: grid;
-  grid-template-columns: 1fr; /* Una columna */
+  grid-template-columns: 1fr;
   gap: 25px;
 }
 

@@ -7,7 +7,7 @@ import './App.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Router> {/* Envuelve App con Router */}
+    <Router> {}
       <App />
     </Router>
   </React.StrictMode>,

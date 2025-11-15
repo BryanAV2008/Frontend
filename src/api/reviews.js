@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://localhost:3000/api'; 
-
+// Obtiene las reseñas
 export const getReviews = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/reviews`);
@@ -12,7 +12,7 @@ export const getReviews = async () => {
     throw error;
   }
 };
-
+//obtiene la reseña por id
 export const getReviewById = async (id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/reviews/${id}`);
@@ -25,7 +25,7 @@ export const getReviewById = async (id) => {
     throw error;
   }
 };
-
+// Crea una nueva reseña
 export const createReview = async (reviewData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/reviews`, {
@@ -42,7 +42,7 @@ export const createReview = async (reviewData) => {
     throw error;
   }
 };
-
+// Actualiza una reseña existente
 export const updateReview = async (id, reviewData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/reviews/${id}`, {
@@ -59,7 +59,7 @@ export const updateReview = async (id, reviewData) => {
     throw error;
   }
 };
-
+// Elimina una reseña
 export const deleteReview = async (id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/reviews/${id}`, {

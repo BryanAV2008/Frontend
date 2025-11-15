@@ -80,12 +80,12 @@
   margin-bottom: 10px;
 }
 
-.favorite-genre-value { /* Clase para el texto del género en sí */
-  font-size: 2.2em; /* Un poco más grande para destacarlo */
+.favorite-genre-value { 
+  font-size: 2.2em; 
   font-weight: bold;
-  color: #007bff; /* El mismo azul de las otras estadísticas */
+  color: #007bff; 
   margin: 0;
-  /* Asegurar que el texto dentro también se ajusta */
+  
   overflow-wrap: break-word;
   word-wrap: break-word;
 }
@@ -94,9 +94,8 @@
   font-weight: bold;
   color: #007bff;
   margin: 0;
-  /* --- NUEVAS PROPIEDADES PARA AJUSTAR EL TEXTO --- */
-  word-wrap: break-word;     /* Permite que las palabras largas se rompan */
-  overflow-wrap: break-word; /* Estándar más moderno para mayor compatibilidad */
-  /* Si el texto se ve muy apretado, puedes añadir un line-height */
-  /* line-height: 1.2; */
+ 
+  word-wrap: break-word;     
+  overflow-wrap: break-word; 
+  line-height: 1.2;
 }

@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import TarjetaJuego from '../Tarjetajuego/Tarjetajuego.jsx';
 import { getGames, deleteGame } from '../../api/index.js'; 
 import './BibliotecaJuegos.css';
-
+// Componente para mostrar la biblioteca de juegos
 function BibliotecaJuegos() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
+// Función para obtener los juegos desde la API
   const fetchAllGames = async () => {
     setLoading(true);
     setError(null);
@@ -22,11 +22,11 @@ function BibliotecaJuegos() {
       setLoading(false);
     }
   };
-
+// useEffect para cargar los juegos al montar el componente
   useEffect(() => {
     fetchAllGames();
   }, []);
-
+// Maneja la eliminación de un juego
   const handleDeleteGame = async (gameId) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar este juego?')) {
       try {
@@ -38,10 +38,10 @@ function BibliotecaJuegos() {
       }
     }
   };
-
+// Renderizado del componente
   if (loading) return <div className="loading-message">Cargando tu biblioteca de juegos...</div>;
   if (error) return <div className="error-message">Error al cargar los juegos: {error.message}</div>;
-
+// Mensaje si no hay juegos en la biblioteca
   return (
     <div className="biblioteca-juegos-container">
       <h2>Mi Biblioteca de Juegos</h2>

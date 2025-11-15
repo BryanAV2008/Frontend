@@ -1,5 +1,5 @@
 const API_BASE_URL = 'http://localhost:3000/api'; 
-
+// Obtiene los juegos
 export const getGames = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/games`);
@@ -12,7 +12,7 @@ export const getGames = async () => {
     throw error;
   }
 };
-
+//obtiene el juego por id
 export const getGameById = async (id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/games/${id}`);
@@ -25,7 +25,7 @@ export const getGameById = async (id) => {
     throw error;
   }
 };
-
+// Crea un nuevo juego
 export const createGame = async (gameData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/games`, {
@@ -42,7 +42,7 @@ export const createGame = async (gameData) => {
     throw error;
   }
 };
-
+// Actualiza un juego existente
 export const updateGame = async (id, gameData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/games/${id}`, {
@@ -59,7 +59,7 @@ export const updateGame = async (id, gameData) => {
     throw error;
   }
 };
-
+// Elimina un juego
 export const deleteGame = async (id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/games/${id}`, {
@@ -74,7 +74,7 @@ export const deleteGame = async (id) => {
     throw error;
   }
 };
-
+// Actualiza el estado de completado de un juego
 export const updateGameCompletedStatus = async (id, completedStatus) => {
     try {
         const response = await fetch(`${API_BASE_URL}/games/${id}/completed`, {
@@ -91,7 +91,7 @@ export const updateGameCompletedStatus = async (id, completedStatus) => {
         throw error;
     }
 };
-
+// Actualiza la calificación de un juego
 export const updateGameRating = async (id, rating) => {
     try {
         const response = await fetch(`${API_BASE_URL}/games/${id}/rating`, {
@@ -108,7 +108,7 @@ export const updateGameRating = async (id, rating) => {
         throw error;
     }
 };
-
+// Actualiza las horas jugadas de un juego
 export const updateGameHoursPlayed = async (id, hoursPlayed) => {
     try {
         const response = await fetch(`${API_BASE_URL}/games/${id}/hoursPlayed`, {

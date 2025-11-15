@@ -1,9 +1,8 @@
-// src/components/FormularioJuego/FormularioJuego.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getGameById, createGame, updateGame } from '../../api'; // Importamos funciones de la API
+import { getGameById, createGame, updateGame } from '../../api'; 
 import './FormularioJuego.css';
-
+// Componente para el formulario de añadir/editar juegos
 function FormularioJuego() {
   const { id } = useParams(); // ID si estamos editando
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ function FormularioJuego() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+// useEffect para cargar los datos del juego si estamos editando
   useEffect(() => {
     if (id) {
       const fetchGameToEdit = async () => {
@@ -40,7 +39,7 @@ function FormularioJuego() {
       fetchGameToEdit();
     }
   }, [id]);
-
+// Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setGame(prevGame => ({
@@ -48,7 +47,7 @@ function FormularioJuego() {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-
+// Maneja el envío del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -70,10 +69,10 @@ function FormularioJuego() {
       setLoading(false);
     }
   };
-
+// Renderizado del componente
   if (loading && id && !game.title) return <div className="loading-message">Cargando juego para editar...</div>;
   if (error) return <div className="error-message">Error: {error.message}</div>;
-
+// Formulario para añadir o editar un juego
   return (
     <div className="formulario-juego-container">
       <h2>{id ? 'Editar Juego' : 'Añadir Nuevo Juego'}</h2>
@@ -169,7 +168,7 @@ function FormularioJuego() {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="rating">Puntuación (0-5):</label>
+          <label htmlFor="rating">Puntuación (0-5 ⭐):</label>
           <input
             type="number"
             id="rating"
@@ -185,7 +184,7 @@ function FormularioJuego() {
           {loading ? 'Guardando...' : (id ? 'Guardar Cambios' : 'Añadir Juego')}
         </button>
         <button type="button" className="btn-secondary" onClick={() => navigate(-1)} disabled={loading}>
-          Cancelar
+          Cancelar ❌
         </button>
       </form>
     </div>

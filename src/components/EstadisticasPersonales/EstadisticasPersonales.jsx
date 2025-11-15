@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getStats } from '../../api'; 
 import './EstadisticasPersonales.css';
-
+// Componente para mostrar las estadísticas personales de juegos
 function EstadisticasPersonales() {
   const [stats, setStats] = useState({
     totalGames: 0,
@@ -12,7 +12,7 @@ function EstadisticasPersonales() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+// useEffect para cargar las estadísticas al montar el componente
   useEffect(() => {
     const fetchStatsData = async () => {
       setLoading(true);
@@ -28,10 +28,10 @@ function EstadisticasPersonales() {
     };
     fetchStatsData();
   }, []);
-
+// Renderizado del componente
   if (loading) return <div className="loading-message">Cargando tus estadísticas...</div>;
   if (error) return <div className="error-message">Error al cargar las estadísticas: {error.message}</div>;
-
+// Renderizado de las estadísticas
   return (
     <div className="estadisticas-personales-container">
       <h2>Mis Estadísticas de Juego</h2>

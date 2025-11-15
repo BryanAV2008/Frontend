@@ -1,4 +1,4 @@
-/* src/components/FormularioReseña/FormularioReseña.css */
+
 .formulario-review-container {
   max-width: 600px;
   margin: 30px auto;
@@ -54,7 +54,7 @@
     font-weight: bold;
 }
 
-/* Ajustes de estrellas para el formulario */
+
 .formulario-review .star-rating .star {
-    font-size: 2em; /* Estrellas más grandes en el formulario */
+    font-size: 2em; 
 }

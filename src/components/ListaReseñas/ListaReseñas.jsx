@@ -1,15 +1,14 @@
-// src/components/ListaReseñas/ListaReseñas.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getReviews, deleteReview } from '../../api'; // Importamos funciones de la API
+import { getReviews, deleteReview } from '../../api'; 
 import './ListaReseñas.css';
-import { default as StarRating } from '../Tarjetajuego/Tarjetajuego.jsx'; // Importamos StarRating del componente TarjetaJuego
-
+import { default as StarRating } from '../Tarjetajuego/Tarjetajuego.jsx';
+// Componente para mostrar la lista de reseñas
 function ListaReseñas() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+// Función para obtener las reseñas desde la API
   const fetchAllReviews = async () => {
     setLoading(true);
     setError(null);
@@ -22,11 +21,11 @@ function ListaReseñas() {
       setLoading(false);
     }
   };
-
+// useEffect para cargar las reseñas al montar el componente
   useEffect(() => {
     fetchAllReviews();
   }, []);
-
+// Maneja la eliminación de una reseña
   const handleDeleteReview = async (reviewId) => {
     if (window.confirm('¿Estás seguro de que quieres eliminar esta reseña?')) {
       try {
