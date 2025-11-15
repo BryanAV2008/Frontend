@@ -40,7 +40,7 @@ function App() {
       </main>
 
       <footer className="app-footer">
-        <p>&copy; 2023 GameTracker. Todos los derechos reservados.</p>
+        <p>&copy; 2025 GameTracker. De Gamers para Gamers.</p>
       </footer>
     </div>
   );

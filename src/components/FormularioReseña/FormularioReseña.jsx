@@ -26,15 +26,14 @@ function FormularioReseña() {
 
     try {
       if (id) {
-        // ... (modo edición existente) ...
+       
       } else if (gameId) {
-        // Modo creación para un juego específico: cargar título del juego
-        console.log("Modo creación. Intentando cargar juego con ID:", gameId); // <-- AÑADE ESTO
+        console.log("Modo creación. Intentando cargar juego con ID:", gameId); 
         setGameLoading(true);
-        const gameData = await getGameById(gameId); // <--- ESTA LÍNEA
-        console.log("Resultado de getGameById:", gameData); // <-- AÑADE ESTO
+        const gameData = await getGameById(gameId); 
+        console.log("Resultado de getGameById:", gameData); 
 
-        if (!gameData) { // <-- AÑADE ESTA COMPROBACIÓN
+        if (!gameData) { 
           throw new Error("El juego especificado no fue encontrado.");
         }
 
@@ -42,8 +41,8 @@ function FormularioReseña() {
         setGameLoading(false);
       }
     } catch (err) {
-      console.error("Error al cargar datos iniciales de la reseña o juego:", err); // <-- Modifica el mensaje
-      setError(new Error(`Error: ${err.message}. Asegúrate de que el juego existe.`)); // <-- Mensaje más claro
+      console.error("Error al cargar datos iniciales de la reseña o juego:", err); 
+      setError(new Error(`Error: ${err.message}. Asegúrate de que el juego existe.`));
     } finally {
       setLoading(false);
     }
