@@ -57,3 +57,46 @@
     color: #dc3545;
     font-weight: bold;
 }
+
+.favorite-genre-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  text-align: center;
+  margin-top: 30px; /* Espacio para separarlo del grid de arriba */
+  max-width: 300px; /* Un ancho máximo para que se vea como una tarjeta */
+  margin-left: auto; /* Centrar la tarjeta */
+  margin-right: auto; /* Centrar la tarjeta */
+  /* Propiedades clave para el ajuste de texto */
+  overflow-wrap: break-word; /* Permite que las palabras largas se rompan */
+  word-wrap: break-word;     /* Compatibilidad con navegadores antiguos */
+}
+
+.favorite-genre-section h3 {
+  font-size: 1.3em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.favorite-genre-value { /* Clase para el texto del género en sí */
+  font-size: 2.2em; /* Un poco más grande para destacarlo */
+  font-weight: bold;
+  color: #007bff; /* El mismo azul de las otras estadísticas */
+  margin: 0;
+  /* Asegurar que el texto dentro también se ajusta */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.stat-card p {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #007bff;
+  margin: 0;
+  /* --- NUEVAS PROPIEDADES PARA AJUSTAR EL TEXTO --- */
+  word-wrap: break-word;     /* Permite que las palabras largas se rompan */
+  overflow-wrap: break-word; /* Estándar más moderno para mayor compatibilidad */
+  /* Si el texto se ve muy apretado, puedes añadir un line-height */
+  /* line-height: 1.2; */
+}
