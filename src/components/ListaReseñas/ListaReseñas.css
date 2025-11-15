@@ -1,0 +1,75 @@
+/* src/components/ListaReseñas/ListaReseñas.css */
+.lista-reviews-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lista-reviews-container h2 {
+  font-size: 2.5em;
+  color: #282c34;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.reviews-list {
+  display: grid;
+  grid-template-columns: 1fr; /* Una columna */
+  gap: 25px;
+}
+
+.review-item {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 25px;
+  text-align: left;
+}
+
+.review-item h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.review-item .review-author {
+  font-size: 0.95em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.review-item .review-rating {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.review-item .review-rating .star {
+    font-size: 1.4em; /* Ajusta el tamaño de las estrellas en las reseñas */
+}
+
+.review-item .review-content {
+  font-size: 1em;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.loading-message, .error-message, .no-reviews-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 50px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+}

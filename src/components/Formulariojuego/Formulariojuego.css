@@ -1,0 +1,44 @@
+/* src/components/FormularioJuego/FormularioJuego.css */
+.formulario-juego-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.formulario-juego-container h2 {
+  font-size: 2.2em;
+  color: #282c34;
+  margin-bottom: 25px;
+}
+
+.formulario-juego {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formulario-juego button {
+  padding: 12px 20px;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
+
+.formulario-juego .btn-secondary {
+    margin-left: 10px;
+}
+
+.loading-message, .error-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin-top: 50px;
+}
+
+.error-message {
+    color: #dc3545;
+    font-weight: bold;
+}

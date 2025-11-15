@@ -1,0 +1,32 @@
+/* src/components/BibliotecaJuegos/BibliotecaJuegos.css */
+.biblioteca-juegos-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.biblioteca-juegos-container h2 {
+  font-size: 2.5em;
+  color: #282c34;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  justify-content: center;
+}
+
+.loading-message, .error-message, .no-games-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #555;
+  margin-top: 50px;
+}
+
+.error-message {
+  color: #dc3545;
+  font-weight: bold;
+}

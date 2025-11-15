@@ -1,0 +1,254 @@
+/* src/components/TarjetaJuego/TarjetaJuego.css */
+.tarjeta-juego {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
+  text-align: left;
+}
+
+.tarjeta-juego:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.game-link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Asegura que el enlace esté por encima de la imagen */
+}
+
+.game-cover {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.game-info {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.game-info h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.game-info p {
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.game-description {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.game-rating-section, .game-status-section, .game-hours-section {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.game-rating-section p, .game-status-section p {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 5px;
+}
+
+.star {
+  font-size: 1.6em; /* Más grandes */
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #ffc107;
+}
+
+.star.read-only {
+    cursor: default;
+}
+.star.read-only:hover {
+    color: #ffc107; /* Asegura que no cambie al hacer hover si es read-only */
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: #555;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.hours-input {
+    width: 80px;
+    padding: 5px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+.game-actions {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  justify-content: center;
+  flex-wrap: wrap; /* Permite que los botones se envuelvan */
+}
+
+.game-actions .btn-primary,
+.game-actions .btn-secondary,
+.game-actions .btn-danger {
+    flex-grow: 1; /* Para que los botones se expandan */
+    text-align: center;
+    max-width: 120px; /* Limita el tamaño de los botones */
+}
+
+/* Estilos para la página de detalle del juego */
+.tarjeta-juego.detail-page {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Imagen fija, info flexible */
+    max-width: 900px; /* Ancho máximo para el detalle */
+    margin: 30px auto;
+    text-align: left;
+}
+
+.tarjeta-juego.detail-page .game-cover.detail-cover {
+    height: auto; /* Altura automática para el detalle */
+    max-height: 400px;
+    object-fit: contain;
+    padding: 20px;
+}
+
+.tarjeta-juego.detail-page .game-info {
+    padding: 20px;
+    border-left: 1px solid #eee;
+}
+
+.tarjeta-juego.detail-page .game-info h3 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+}
+
+.tarjeta-juego.detail-page .game-actions {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    justify-content: flex-end; /* Alinea los botones a la derecha */
+    border-top: none; /* Quitamos la línea para que quede debajo de la info */
+    padding-top: 0;
+    margin-top: -10px; /* Ajuste para acercarlo a la info */
+}
+
+@media (max-width: 768px) {
+  .tarjeta-juego.detail-page {
+    grid-template-columns: 1fr; /* Columna única en móvil */
+  }
+
+  .tarjeta-juego.detail-page .game-cover.detail-cover {
+      max-height: 300px;
+      padding: 10px;
+  }
+
+  .tarjeta-juego.detail-page .game-info {
+      border-left: none;
+      border-top: 1px solid #eee;
+  }
+}
+
+@media (max-width: 480px) {
+  .tarjeta-juego {
+    border-radius: 5px;
+  }
+
+  .game-info h3 {
+    font-size: 1.3em;
+  }
+
+  .game-cover {
+    height: 150px;
+  }
+
+  .game-actions .btn-primary,
+  .game-actions .btn-secondary,
+  .game-actions .btn-danger {
+    max-width: 100%; /* Botones de ancho completo */
+  }
+}
