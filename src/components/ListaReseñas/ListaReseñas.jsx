@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getReviews, deleteReview } from '../../api'; 
 import './ListaReseñas.css';
-import { default as StarRating } from '../Tarjetajuego/Tarjetajuego.jsx';
+import { default as StarRating } from '../Tarjetajuego/TarjetaJuego.jsx';
 // Componente para mostrar la lista de reseñas
 function ListaReseñas() {
   const [reviews, setReviews] = useState([]);

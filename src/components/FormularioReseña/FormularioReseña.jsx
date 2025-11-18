@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getGameById } from '../../api'; // Para obtener el título del juego
 import { getReviewById, createReview, updateReview } from '../../api'; 
 import './FormularioReseña.css';
-import { default as StarRating } from '../Tarjetajuego/Tarjetajuego.jsx'; 
+import { default as StarRating } from '../Tarjetajuego/TarjetaJuego.jsx'; 
 // Componente para el formulario de añadir/editar reseñas
 function FormularioReseña() {
   const { id, gameId } = useParams(); // 'id' para editar reseña, 'gameId' para crear en un juego específico

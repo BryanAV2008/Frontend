@@ -1,8 +1,8 @@
 import React from 'react';
 import { Routes, Route, NavLink } from 'react-router-dom'; 
 import BibliotecaJuegos from './components/BibliotecaJuegos/BibliotecaJuegos.jsx';
-import TarjetaJuego from './components/Tarjetajuego/Tarjetajuego.jsx';
-import FormularioJuego from './components/FormularioJuego/FormularioJuego.jsx';
+import TarjetaJuego from './components/Tarjetajuego/TarjetaJuego.jsx';
+import FormularioJuego from './components/Formulariojuego/Formulariojuego.jsx';
 import ListaReseñas from './components/ListaReseñas/ListaReseñas.jsx';
 import FormularioReseña from './components/FormularioReseña/FormularioReseña.jsx';
 import EstadisticasPersonales from './components/EstadisticasPersonales/EstadisticasPersonales.jsx';
