@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import TarjetaJuego from '../Tarjetajuego/Tarjetajuego.jsx';
+import TarjetaJuego from '../Tarjetajuego/TarjetaJuego.jsx';
 import { getGames, deleteGame } from '../../api/index.js'; 
 import './BibliotecaJuegos.css';
 // Componente para mostrar la biblioteca de juegos

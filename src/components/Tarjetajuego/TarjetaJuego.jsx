@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed } from '../../api'; 
+import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed } from '../../api';
 import './TarjetaJuego.css';
-import placeholderImage from '../../assets/images/placeholder.png'; 
+import placeholderImage from '../../assets/images/placeholder.png';
 
 function StarRating({ rating, onRatingChange, readOnly = false }) {
   const [hoverRating, setHoverRating] = useState(0);
@@ -25,12 +25,13 @@ function StarRating({ rating, onRatingChange, readOnly = false }) {
 }
 
 function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = false }) {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [game, setGame] = useState(initialGame);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-// useEffect para cargar los detalles del juego si estamos en la página de detalle
+
+  // useEffect para cargar los detalles del juego si estamos en la página de detalle
   useEffect(() => {
     if (isDetailPage && id) {
       const fetchGameDetails = async () => {
@@ -46,10 +47,11 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       };
       fetchGameDetails();
     } else {
-      setGame(initialGame); 
+      setGame(initialGame);
     }
   }, [id, isDetailPage, initialGame]);
-// Maneja el cambio del estado de completado
+
+  // Maneja el cambio del estado de completado
   const handleToggleCompleted = async () => {
     if (!game) return;
     try {
@@ -64,7 +66,8 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       setLoading(false);
     }
   };
-// Maneja el cambio de la calificación
+
+  // Maneja el cambio de la calificación
   const handleRatingChange = async (newRating) => {
     if (!game || newRating === game.rating) return;
     try {
@@ -79,12 +82,13 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       setLoading(false);
     }
   };
-// Maneja el cambio de las horas jugadas
+
+  // Maneja el cambio de las horas jugadas
   const handleHoursPlayedChange = async (e) => {
     if (!game) return;
     const newHours = parseInt(e.target.value, 10);
     if (isNaN(newHours) || newHours < 0 || newHours === game.hoursPlayed) return;
-// Actualizar horas jugadas
+
     try {
       setLoading(true);
       const updatedGame = await updateGameHoursPlayed(game._id, newHours);
@@ -95,6 +99,15 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       setError(err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Función para manejar el clic en eliminar (CON PREVENCIÓN DE REDIRECCIÓN)
+  const handleDeleteClick = (event) => {
+    event.stopPropagation(); // Detiene que el evento "suba" y sea capturado por padres
+    event.preventDefault();  // Previene la acción por defecto de un Link si existiera un padre
+    if (onDelete) {
+      onDelete(game._id);
     }
   };
 
@@ -155,7 +168,7 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       <div className="game-actions">
         <Link to={`/add-review/${game._id}`} className="btn-secondary">Escribir Reseña</Link>
         <Link to={`/edit-game/${game._id}`} className="btn-primary">Editar</Link>
-        {onDelete && <button onClick={() => onDelete(game._id)} className="btn-danger" disabled={loading}>Eliminar</button>}
+        {onDelete && <button onClick={handleDeleteClick} className="btn-danger" disabled={loading}>Eliminar</button>}
       </div>
     </div>
   );
