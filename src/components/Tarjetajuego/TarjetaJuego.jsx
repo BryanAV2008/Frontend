@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed } from '../../api';
+import { getGameById, updateGameCompletedStatus, updateGameRating, updateGameHoursPlayed, deleteGame } from '../../api/games';
 import './TarjetaJuego.css';
 import placeholderImage from '../../assets/images/placeholder.png';
+import StarRating from '../StarRating/StarRating.jsx'; // <--- ¡ESTA ES LA LÍNEA CRUCIAL AÑADIDA!
 
-function StarRating({ rating, onRatingChange, readOnly = false }) {
-  const [hoverRating, setHoverRating] = useState(0);
-
-  return (
-    <div className="star-rating">
-      {[1, 2, 3, 4, 5].map((star) => (
-        <span
-          key={star}
-          className={`star ${star <= (hoverRating || rating) ? 'filled' : ''} ${readOnly ? 'read-only' : ''}`}
-          onClick={() => !readOnly && onRatingChange(star)}
-          onMouseEnter={() => !readOnly && setHoverRating(star)}
-          onMouseLeave={() => !readOnly && setHoverRating(0)}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-}
+// NOTA: La definición de StarRating DEBE HABER SIDO MOVIDA a src/components/StarRating/StarRating.jsx
+// Si todavía tienes la función StarRating definida aquí, elimínala.
 
 function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = false }) {
   const { id } = useParams();
@@ -135,6 +119,7 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
 
         <div className="game-rating-section">
           <p><strong>Puntuación:</strong></p>
+          {/* El StarRating aquí ahora usará el componente importado correctamente */}
           <StarRating rating={game.rating} onRatingChange={handleRatingChange} readOnly={loading} />
         </div>
 
@@ -168,7 +153,7 @@ function TarjetaJuego({ game: initialGame, onDelete, onUpdate, isDetailPage = fa
       <div className="game-actions">
         <Link to={`/add-review/${game._id}`} className="btn-secondary">Escribir Reseña</Link>
         <Link to={`/edit-game/${game._id}`} className="btn-primary">Editar</Link>
-        {onDelete && <button onClick={handleDeleteClick} className="btn-danger" disabled={loading}>Eliminar</button>}
+        <button onClick={handleDeleteClick} className="btn-danger" disabled={loading}>Eliminar</button>
       </div>
     </div>
   );

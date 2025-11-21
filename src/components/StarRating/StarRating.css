@@ -1,0 +1,23 @@
+/* src/components/StarRating/StarRating.css */
+.star-rating {
+  display: inline-block;
+  font-size: 2em; /* Tamaño de las estrellas */
+  cursor: pointer;
+}
+
+.star {
+  color: #ccc; /* Color por defecto (vacío) */
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: gold; /* Color cuando está rellenada */
+}
+
+.star.read-only {
+  cursor: default;
+}
+
+.star.read-only.filled {
+  color: orange; /* Un color diferente para estrellas de solo lectura */
+}

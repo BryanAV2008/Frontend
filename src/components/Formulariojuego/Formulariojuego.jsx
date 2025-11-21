@@ -184,7 +184,7 @@ function FormularioJuego() {
           {loading ? 'Guardando...' : (id ? 'Guardar Cambios' : 'Añadir Juego')}
         </button>
         <button type="button" className="btn-secondary" onClick={() => navigate(-1)} disabled={loading}>
-          Cancelar ❌
+          Cancelar❌
         </button>
       </form>
     </div>
