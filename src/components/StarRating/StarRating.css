@@ -1,23 +1,53 @@
 /* src/components/StarRating/StarRating.css */
+
 .star-rating {
-  display: inline-block;
-  font-size: 2em; /* Tamaño de las estrellas */
-  cursor: pointer;
+  display: inline-flex;
+  font-size: 2em;
+  gap: 2px;
+  user-select: none; /* Evita que el texto de las estrellas se seleccione */
 }
 
 .star {
-  color: #ccc; /* Color por defecto (vacío) */
-  transition: color 0.2s;
+  color: #ccc; /* Gris claro por defecto (estrellas vacías) */
+  transition: color 0.2s; /* Transición suave al cambiar de color */
+  cursor: pointer;      /* Muestra un puntero para indicar que son interactivas */
 }
 
+/* Estrellas interactivas llenas */
 .star.filled {
-  color: gold; /* Color cuando está rellenada */
+  color: gold; /* Dorado para las estrellas llenas interactivas */
 }
 
-.star.read-only {
-  cursor: default;
+/* --- EFECTOS DE HOVER PARA ESTRELLAS INTERACTIVAS (cuando NO son read-only) --- */
+/* Cuando el ratón pasa por encima de una estrella, o por encima de una estrella y las anteriores ya estaban llenas */
+.star-rating:not(.read-only) .star:hover,
+.star-rating:not(.read-only) .star:hover ~ .star.filled {
+  color: gold; /* Se vuelven doradas al hacer hover */
 }
 
-.star.read-only.filled {
-  color: orange; /* Un color diferente para estrellas de solo lectura */
+/* Las estrellas que están después de la que tiene el hover y no están llenas, permanecen grises */
+.star-rating:not(.read-only) .star:hover ~ .star:not(.filled) {
+  color: #ccc;
+}
+
+
+/* --- ESTILOS ESPECÍFICOS PARA EL MODO readOnly --- */
+.star-rating.read-only .star {
+  pointer-events: none !important; /* Deshabilita todos los eventos de ratón */
+  cursor: default !important;     /* Muestra el cursor por defecto (no un puntero) */
+  color: #ccc !important;         /* Asegura que las estrellas vacías en readOnly sean grises */
+}
+
+/* Asegura que las estrellas llenas en modo readOnly sean doradas */
+.star-rating.read-only .star.filled {
+  color: gold !important; /* Dorado para las estrellas llenas en readOnly */
+}
+
+/* Anular CUALQUIER EFECTO DE HOVER remanente cuando es read-only */
+.star-rating.read-only .star:hover {
+  color: #ccc !important; /* Las estrellas vacías no deben cambiar al pasar el ratón */
+}
+
+.star-rating.read-only .star.filled:hover {
+  color: gold !important; /* Las estrellas llenas no deben cambiar al pasar el ratón */
 }

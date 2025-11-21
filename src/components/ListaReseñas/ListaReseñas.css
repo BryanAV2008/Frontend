@@ -1,74 +1,113 @@
-.lista-reviews-container {
-  padding: 20px;
+/* GAMETRACKER-Frontend/src/components/ListaReseñas/ListaReseñas.css */
+
+.lista-reviews-container { /* Coincide con el className del JSX */
   max-width: 900px;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #2c2c2c; /* Fondo oscuro */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #f0f0f0; /* Texto claro */
 }
 
 .lista-reviews-container h2 {
-  font-size: 2.5em;
-  color: #282c34;
-  margin-bottom: 30px;
   text-align: center;
+  color: #00bcd4; /* Un color de acento */
+  margin-bottom: 30px;
+  font-size: 2.5em; /* Ajuste para que coincida con el tamaño que tenías */
 }
 
 .reviews-list {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Mostrar varias columnas */
+  gap: 20px; /* Espacio entre tarjetas */
 }
 
-.review-item {
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  padding: 25px;
-  text-align: left;
+.review-item { /* Renombrado de 'review-card' a 'review-item' para coincidir */
+  background-color: #3b3b3b; /* Fondo un poco más claro para la tarjeta */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .review-item h3 {
-  font-size: 1.8em;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 10px;
+  color: #f0f0f0; /* Color de título de juego */
+  font-size: 1.4em; /* Ajuste para el tamaño del título del juego */
+  margin-bottom: 5px;
+  border-bottom: 1px solid #555; /* Separador */
+  padding-bottom: 10px;
 }
 
 .review-item .review-author {
-  font-size: 0.95em;
-  color: #777;
-  margin-bottom: 10px;
+  color: #bbb;
+  font-size: 0.9em;
+  margin-bottom: 15px;
 }
 
 .review-item .review-rating {
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
 }
 
 .review-item .review-rating .star {
-    font-size: 1.4em; /* Ajusta el tamaño de las estrellas en las reseñas */
+    font-size: 1.5em; /* Tamaño de las estrellas en las reseñas */
+    color: gold; /* Color de las estrellas */
 }
 
 .review-item .review-content {
   font-size: 1em;
-  color: #444;
-  line-height: 1.6;
+  line-height: 1.5;
+  color: #e0e0e0;
+  flex-grow: 1;
   margin-bottom: 20px;
 }
 
 .review-actions {
   display: flex;
   gap: 10px;
-  justify-content: flex-end;
+  margin-top: auto;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
 }
 
+.btn-primary, .btn-danger { /* Clases genéricas, asegúrate de tener estilos para ellas */
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary { /* Estilo para el botón Editar */
+  background-color: #007bff; /* Azul */
+  color: white;
+  text-decoration: none; /* Para Link */
+  display: inline-block; /* Para que Link se comporte como botón */
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger { /* Estilo para el botón Eliminar */
+  background-color: #dc3545; /* Rojo */
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+
 .loading-message, .error-message, .no-reviews-message {
-    text-align: center;
-    font-size: 1.2em;
-    color: #555;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 1.2em;
+  color: #00bcd4;
 }
 
 .error-message {
-    color: #dc3545;
-    font-weight: bold;
+  color: #dc3545;
 }

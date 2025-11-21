@@ -1,13 +1,18 @@
+// GAMETRACKER-Frontend/src/components/ListaReseñas/ListaReseñas.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { getReviews, deleteReview } from '../../api'; 
+import { Link, useNavigate } from 'react-router-dom'; // <--- Añadimos 'useNavigate' aquí
+import { getReviews, deleteReview } from '../../api/reviews'; // <--- Ruta corregida para 'reviews'
 import './ListaReseñas.css';
-import { default as StarRating } from '../Tarjetajuego/TarjetaJuego.jsx';
+// import { default as StarRating } from '../Tarjetajuego/TarjetaJuego.jsx'; // <--- ¡¡¡ELIMINA ESTA LÍNEA!!!
+import StarRating from '../StarRating/StarRating'; // <--- ¡¡¡AÑADE ESTA LÍNEA!!! Ruta correcta para StarRating
+
 // Componente para mostrar la lista de reseñas
 function ListaReseñas() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // <--- Inicializamos useNavigate
+
 // Función para obtener las reseñas desde la API
   const fetchAllReviews = async () => {
     setLoading(true);
@@ -15,7 +20,9 @@ function ListaReseñas() {
     try {
       const data = await getReviews();
       setReviews(data);
+      console.log("Reseñas cargadas:", data); // Para depuración
     } catch (err) {
+      console.error("Error al cargar las reseñas:", err); // Añadido para mejor depuración
       setError(err);
     } finally {
       setLoading(false);
@@ -31,7 +38,9 @@ function ListaReseñas() {
       try {
         await deleteReview(reviewId);
         setReviews(reviews.filter(review => review._id !== reviewId));
+        alert('Reseña eliminada con éxito!'); // Mensaje de éxito
       } catch (err) {
+        console.error("Error al eliminar la reseña:", err); // Añadido para mejor depuración
         setError(err);
         alert('Error al eliminar la reseña.');
       }
@@ -55,7 +64,8 @@ function ListaReseñas() {
               <div className="review-rating">
                 <StarRating rating={review.rating} readOnly={true} />
               </div>
-              <p className="review-content">{review.content}</p>
+              {/* --- ¡¡¡CORRECCIÓN AQUÍ: review.comment en lugar de review.content!!! --- */}
+              <p className="review-content">{review.comment || 'Sin comentario.'}</p> 
               <div className="review-actions">
                 <Link to={`/edit-review/${review._id}`} className="btn-primary">Editar</Link>
                 <button onClick={() => handleDeleteReview(review._id)} className="btn-danger" disabled={loading}>Eliminar</button>
